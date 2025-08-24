@@ -4,7 +4,7 @@
   vars:
     login_host: 172.31.80.240
   vars_prompt:
-    name: mysql_root_password
+  - name: mysql_root_password
     prompt: enter root password
     private: no
 
@@ -19,10 +19,10 @@
       state: started
       enabled: yes
 
-  - name: installing pip
-    ansible.builtin.dnf:
-      name: python3-pip
-      state: present
+  # - name: installing pip
+  #   ansible.builtin.dnf:
+  #     name: python3-pip
+  #     state: present
 
 
 
@@ -44,13 +44,13 @@
       login_host: "{{ login_host }}"
       filter: version
     ignore_errors: yes
-    register: RESULT
+    register: mysql_connection_output
 
   - name: printing output
     ansible.builtin.debug:
-      msg: "output is :{{ RESULT }}."
+      msg: "output is :{{ mysql_connection_output }}."
 
   - name: setup root password
     ansible.builtin.command: "mysql_secure_installation --set-root-pass {{mysql_root_password}}"
-    when: RESULT.output is true # don't give {{}} in when and always use small true
+    when: mysql_connection_output.failed is true # don't give {{}} in when and always use small true
 
