@@ -51,6 +51,6 @@
       msg: "output is :{{ RESULT }}."
 
   - name: setup root password
-    ansible.builtin.coomand: "mysql_secure_installation --set-root-pass {{mysql_root_passwords}}"
+    ansible.builtin.command: "mysql_secure_installation --set-root-pass {{mysql_root_passwords}}"
     when: RESULT.output is true
 
