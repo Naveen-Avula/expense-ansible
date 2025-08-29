@@ -2,7 +2,7 @@
   hosts: db
   become: yes
   vars:
-    login_host: 44.211.213.171
+    login_host: 18.212.49.96 # public ipv4 ..not private ip and in inventory given private ip
   vars_prompt:
   - name: mysql_root_password
     prompt: enter root password
