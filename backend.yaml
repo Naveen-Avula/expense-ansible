@@ -55,7 +55,7 @@
       # pip3.11 if python version is 3.11
 
   - name: import data into mysql
-    community.builtin.mysql.mysql_db:
+    community.mysql.mysql_db:
       login_user: root
       login_password: "{{ login_password }}"
       login_host: "{{ login_host }}"
